@@ -1,4 +1,5 @@
-﻿using Catalog_Api.Entities;
+﻿using Catalog_Api.Dtos;
+using Catalog_Api.Entities;
 using Catalog_Api.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,15 +22,15 @@ namespace Catalog_Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Item> GetItems()
+        public IEnumerable<ItemDto> GetItems()
         {
-            var items = _repository.GetItems();
+            var items = _repository.GetItems().Select(item => item.AsDto());
 
             return items;
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Item> GetItem(Guid id)
+        public ActionResult<ItemDto> GetItem(Guid id)
         {
             var item = _repository.GetItem(id);
 
@@ -38,7 +39,7 @@ namespace Catalog_Api.Controllers
                 return NotFound();
             }
 
-            return Ok(item);
+            return Ok(item.AsDto());
         }
 
     }
