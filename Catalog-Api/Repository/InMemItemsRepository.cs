@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catalog_Api.Repository
 {
-    public class InMemItemsRepositiry
+    public class InMemItemsRepository
     {
         private readonly List<Item> items = new()
         {
