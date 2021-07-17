@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catalog_Api.Repository
 {
-    public class InMemItemsRepository
+    public class InMemItemsRepository : IItemsRepository
     {
         private readonly List<Item> items = new()
         {
@@ -14,7 +14,7 @@ namespace Catalog_Api.Repository
             new Item { Id = Guid.NewGuid(), Name = "Fi system", Price = 1050, CreatedDate = DateTime.UtcNow },
             new Item { Id = Guid.NewGuid(), Name = "Clutch Plates", Price = 600, CreatedDate = DateTime.UtcNow },
             new Item { Id = Guid.NewGuid(), Name = "Engine Oil", Price = 1500, CreatedDate = DateTime.UtcNow }
-        };  
+        };
 
         public IEnumerable<Item> GetItems()
         {
