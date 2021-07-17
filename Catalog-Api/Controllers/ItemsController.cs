@@ -79,5 +79,19 @@ namespace Catalog_Api.Controllers
             return NoContent();
         }
 
+        [HttpDelete]
+        public ActionResult DeleteItem(Guid id)
+        {
+            var existingItem = _repository.GetItem(id);
+
+            if (existingItem is null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteItem(id);
+            return NoContent();
+        }
+
     }
 }
